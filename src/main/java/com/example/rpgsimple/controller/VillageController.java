@@ -39,7 +39,10 @@ public class VillageController {
             currentInventory.setHpBottle(currentInventory.getHpBottle() + 1);
             inventoryService.save(currentInventory);
         } else {
-            model.addAttribute("GoldError", "You haven't gold");
+            model.addAttribute("goldError", "You haven't gold");
+            model.addAttribute("character", currentCharacter);
+            model.addAttribute("inventory", currentInventory);
+            return "village";
         }
         return "redirect:/village";
     }

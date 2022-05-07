@@ -58,6 +58,14 @@
     font-size: 2rem;
 }
 
+.ErrorSecond {
+    font-family: 'VT323', monospace;
+    color: tomato;
+    font-size: 1.5rem;
+    text-decoration: none;
+    margin: 1px;
+}
+
 .Forest {
     background-image: url("https://steamuserimages-a.akamaihd.net/ugc/100603690274632772/7538841421DEA4DA2E4F1DFE1EA1D1C2D0C0632E/");
     background-size: 100%;
