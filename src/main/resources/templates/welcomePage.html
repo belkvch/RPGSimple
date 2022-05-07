@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Simple RPG</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/css/main.css" th:href="@{/css/main.css}"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+</head>
+<body class="Forest">
+
+<div sec:authorize="isAuthenticated()">
+    <div style="text-align: right; margin-right: 5px">
+        <a class="Text" th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+
+<div style="text-align: center;">
+    <h2 class="Head">Simple RPG</h2>
+</div>
+
+<div sec:authorize="isAnonymous()">
+    <div style="text-align: center;">
+        <a th:href="@{/login}" class="btn btn-light"><span class="Head">Login</span></a>
+        <a th:href="@{/registration}" class="btn btn-light"><span class="Head"> Register</span></a>
+    </div>
+</div>
+
+<div sec:authorize="isAuthenticated()">
+    <div th:if="${isCharacter == false}">
+        <div style="text-align: center;">
+            <a th:href="@{/village}" class="btn btn-light"><span class="Head">Village</span></a>
+        </div>
+    </div>
+    <div th:if="${isCharacter == true}">
+        <div style="text-align: center;">
+            <a th:href="@{/registration/create-character}" class="btn btn-light"><span
+                    class="Head">Create character</span></a>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

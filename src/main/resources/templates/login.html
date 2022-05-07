@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/css/main.css" th:href="@{/css/main.css}"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body class="Forest">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div style="text-align: center;">
+                <h2 class="Head"> Login </h2>
+            </div>
+
+            <form th:action="@{/login}" method="post">
+                <div class="form-group">
+                    <label for="username" class="Text"> Username: </label>
+                    <input type="text" class="form-control" id="username" name="username" autofocus="autofocus" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="Text">Password: </label>
+                    <input type="password" id="password" name="password" class="form-control"
+                           placeholder="Enter Password" required/>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit" name="login-submit" id="login-submit"
+                                   class="form-control btn btn-dark" value="Log In"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="form-group">
+                <span class="Text">New user? <a class="Text" th:href="@{/registration}">Register here</a></span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
