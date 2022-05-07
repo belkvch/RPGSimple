@@ -70,7 +70,14 @@
                 Trader
             </button>
             <ul class="dropdown-menu">
-                <li><span class="dropdown-item-text">Just Text</span></li>
+                <li><span class="dropdown-item-text">Hello, stranger. I'm the only seller here. So you definitely won't find anything cheaper.</span>
+                </li>
+                <li style="margin: 5px;">
+                    <form action="#" th:action="@{'/village'}" th:object="${character}" method="post">
+                        <input type="hidden" th:value="${character.getId()}" th:attr="name='id'"/>
+                        <p><input type="submit" class="form-control btn btn-dark" value="Buy potion for 500 gold"/></p>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
