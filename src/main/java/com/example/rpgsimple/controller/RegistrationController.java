@@ -63,7 +63,7 @@ public class RegistrationController {
             character.setInventoryCharacter(newInventory);
             character.setUserChatacter(userCurrent);
             model.addAttribute("character", characterService.save(character));
-            return "village";
+            return "redirect:/village";
         } else {
             return "redirect:/welcomePage/authenticated";
         }

@@ -28,6 +28,7 @@
     font-size: 1.3rem;
     text-decoration: none;
 }
+
 .dropdown-item-text {
     font-family: 'VT323', monospace;
     font-size: 1.3rem;
@@ -73,5 +74,15 @@
 
 .Village {
     background-image: url("https://steamuserimages-a.akamaihd.net/ugc/100604131775929213/74C20EBDD0AC15A90189C1D2E2AA31032130F962/");
+    background-size: 100%;
+}
+
+.Ruins {
+    background-image: url("https://steamuserimages-a.akamaihd.net/ugc/92729171389302485/1654A645DFA4D48AB6C33E3BD71C257148D5A627/");
+    background-size: 100%;
+}
+
+.Cave {
+    background-image: url("https://steamuserimages-a.akamaihd.net/ugc/930424264962600699/B7695A3432262CEE532F84E928E032FB53599D62/");
     background-size: 100%;
 }

@@ -1,8 +1,11 @@
 package com.example.rpgsimple.entity;
 
 import lombok.*;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.math.*;
 
 @Entity
@@ -20,6 +23,9 @@ public class Inventory {
     private BigDecimal gold;
 
     private Integer hpBottle;
+
+    @ColumnDefault("false")
+    private boolean isKey;
 
     public Inventory(BigDecimal gold, Integer hpBottle) {
         this.gold = gold;
