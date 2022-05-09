@@ -1,8 +1,12 @@
 package com.example.rpgsimple.entity;
 
 import lombok.*;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @NoArgsConstructor
@@ -25,7 +29,6 @@ public class Character {
 
     private Integer currentExperience;
     private Integer scoreExpToNextLvl;
-
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "inventory", referencedColumnName = "id")

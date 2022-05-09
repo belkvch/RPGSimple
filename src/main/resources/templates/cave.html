@@ -21,9 +21,12 @@
 </div>
 
 <div style="text-align: center;">
-    <p class="Text" style="margin: 1px; text-shadow: black 0 0 10px;"> The ruins are all that remains of the grand castle. </p>
-    <p class="Text" style="margin: 1px; text-shadow: black 0 0 10px;"> The abandoned place is filled with evil monsters. </p>
-    <p class="Text" style="margin: 1px; text-shadow: black 0 0 10px;"> Fortunately for you, they are not very strong... mostly.</p>
+    <p class="Text" style="margin: 1px; text-shadow: black 0 0 10px;"> Opening the rusty door, you got into the
+        cave. </p>
+    <p class="Text" style="margin: 1px; text-shadow: black 0 0 10px;"> The air is thick with humidity, and it's
+        difficult to breathe. </p>
+    <p class="Text" style="margin: 1px; text-shadow: black 0 0 10px;"> The darkness is so thick that it's impossible to
+        see more than a few feet in front of you.</p>
 </div>
 
 <div class="card-deck d-flex justify-content-center" th:object="${character}">
@@ -55,7 +58,8 @@
                 <input class="some-class" type="hidden" th:attr="name='url'">
                 <p><input type="submit" class="form-control btn btn-dark" value="Use potion"/></p>
             </form>
-            <p class="TextThird" style="color: peru" th:if="${character.getInventoryCharacter().isKey() == true}"> Cave's key </p>
+            <p class="TextThird" style="color: peru" th:if="${character.getInventoryCharacter().isKey() == true}">
+                Cave's key </p>
         </div>
     </div>
 
@@ -68,12 +72,21 @@
                 Stranger
             </button>
             <ul class="dropdown-menu">
-                <li><span class="dropdown-item-text">It's not often we receive visitors here. Do you need to go to the cave? I will help you, but not for free, haha. </span>
+                <li><span class="dropdown-item-text">Oh, he's dead.</span>
                 </li>
             </ul>
         </div>
     </div>
 </div>
+<script>
+    const interval = setInterval(
+        () => {
+            if (Math.random() > 0.5) {
+                clearInterval(interval);
+                window.location.replace(window.location.origin + '/fight/cave');
+            }
+        }, 5000);
+</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {

@@ -21,9 +21,12 @@
 </div>
 
 <div style="text-align: center;">
-    <p class="Text" style="margin: 1px; text-shadow: black 0 0 10px;"> The ruins are all that remains of the grand castle. </p>
-    <p class="Text" style="margin: 1px; text-shadow: black 0 0 10px;"> The abandoned place is filled with evil monsters. </p>
-    <p class="Text" style="margin: 1px; text-shadow: black 0 0 10px;"> Fortunately for you, they are not very strong... mostly.</p>
+    <p class="Text" style="margin: 1px; text-shadow: black 0 0 10px;"> The ruins are all that remains of the grand
+        castle. </p>
+    <p class="Text" style="margin: 1px; text-shadow: black 0 0 10px;"> The abandoned place is filled with evil
+        monsters. </p>
+    <p class="Text" style="margin: 1px; text-shadow: black 0 0 10px;"> Fortunately for you, they are not very strong...
+        mostly.</p>
 </div>
 
 <div class="card-deck d-flex justify-content-center" th:object="${character}">
@@ -55,7 +58,8 @@
                 <input class="some-class" type="hidden" th:attr="name='url'">
                 <p><input type="submit" class="form-control btn btn-dark" value="Use potion"/></p>
             </form>
-            <p class="TextThird" style="color: peru" th:if="${character.getInventoryCharacter().isKey() == true}"> Cave's key </p>
+            <p class="TextThird" style="color: peru" th:if="${character.getInventoryCharacter().isKey() == true}">
+                Cave's key </p>
             <span class="ErrorSecond" th:text="${goldError}"></span>
             <span class="ErrorSecond" th:text="${keyError}"></span>
         </div>
@@ -89,6 +93,16 @@
         let urlInput = document.querySelector('.some-class');
         urlInput.value = window.location.href;
     });
+</script>
+
+<script>
+    const interval = setInterval(
+        () => {
+            if (Math.random() > 0.5) {
+                clearInterval(interval);
+                window.location.replace(window.location.origin + '/fight');
+            }
+        }, 5000);
 </script>
 
 </body>

@@ -67,6 +67,14 @@
     margin: 1px;
 }
 
+.Death {
+    font-family: 'VT323', monospace;
+    color: #701001;
+    font-size: 1.5rem;
+    text-decoration: none;
+    margin: 1px;
+}
+
 .Forest {
     background-image: url("https://steamuserimages-a.akamaihd.net/ugc/100603690274632772/7538841421DEA4DA2E4F1DFE1EA1D1C2D0C0632E/");
     background-size: 100%;
@@ -84,5 +92,10 @@
 
 .Cave {
     background-image: url("https://steamuserimages-a.akamaihd.net/ugc/930424264962600699/B7695A3432262CEE532F84E928E032FB53599D62/");
+    background-size: 100%;
+}
+
+.Fight {
+    background-image: url("https://steamuserimages-a.akamaihd.net/ugc/100603690261121834/5F7F0700150405A2DC7DD90E0DBB6F0A08A4117E/");
     background-size: 100%;
 }

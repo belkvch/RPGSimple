@@ -21,12 +21,12 @@ public class RuinsController {
 
     @GetMapping
     public String ruinsPage(Model model) {
-        User userCurrent = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Character characterUser = characterService.findUserByIdUser(userCurrent.getId());
-        model.addAttribute("character", characterUser);
-        Inventory inventoryByCharacter = inventoryService.findInventoryByCharacter(characterUser.getInventoryCharacter().getId());
-        model.addAttribute("inventory", inventoryByCharacter);
-        return "ruins";
+            User userCurrent = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            Character characterUser = characterService.findUserByIdUser(userCurrent.getId());
+            model.addAttribute("character", characterUser);
+            Inventory inventoryByCharacter = inventoryService.findInventoryByCharacter(characterUser.getInventoryCharacter().getId());
+            model.addAttribute("inventory", inventoryByCharacter);
+            return "ruins";
     }
 
     @PostMapping
@@ -39,7 +39,7 @@ public class RuinsController {
             currentInventory.setKey(true);
             inventoryService.save(currentInventory);
         } else {
-            model.addAttribute("goldError", "You haven't gold");
+            model.addAttribute("goldError", "You don't have any gold");
             model.addAttribute("character", currentCharacter);
             model.addAttribute("inventory", currentInventory);
             return "ruins";

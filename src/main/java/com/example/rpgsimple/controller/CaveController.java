@@ -28,7 +28,7 @@ public class CaveController {
         if (inventoryByCharacter.isKey()) {
             return "cave";
         } else {
-            model.addAttribute("keyError","You haven't key");
+            model.addAttribute("keyError","You don't have a key");
             return "ruins";
         }
     }
