@@ -5,7 +5,7 @@
 -- Dumped from database version 14.2
 -- Dumped by pg_dump version 14.2
 
--- Started on 2022-05-08 11:59:59 +03
+-- Started on 2022-05-09 20:22:24 +03
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -63,6 +63,26 @@ CREATE TABLE public.class (
 
 
 ALTER TABLE public.class OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 24578)
+-- Name: enemy; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.enemy (
+    id bigint NOT NULL,
+    attack integer,
+    hp integer,
+    name character varying(255),
+    speed integer,
+    img character varying(255),
+    current_hp integer,
+    exp integer,
+    gold numeric(19,2)
+);
+
+
+ALTER TABLE public.enemy OWNER TO postgres;
 
 --
 -- TOC entry 212 (class 1259 OID 16456)
@@ -135,18 +155,18 @@ CREATE TABLE public.users_roles (
 ALTER TABLE public.users_roles OWNER TO postgres;
 
 --
--- TOC entry 3607 (class 0 OID 16441)
+-- TOC entry 3613 (class 0 OID 16441)
 -- Dependencies: 209
 -- Data for Name: character; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public."character" (id, attack, hp, lvl, speed, class, inventory, users, current_experience, score_exp_to_next_lvl, current_hp) FROM stdin;
-82	4	5	1	2	1	81	4	0	20	5
+82	8	11	3	4	1	81	4	25	50	11
 \.
 
 
 --
--- TOC entry 3608 (class 0 OID 16446)
+-- TOC entry 3614 (class 0 OID 16446)
 -- Dependencies: 210
 -- Data for Name: class; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -158,18 +178,30 @@ COPY public.class (id, priority_attack, priorityhp, priority_speed, attack_stat,
 
 
 --
--- TOC entry 3609 (class 0 OID 16451)
+-- TOC entry 3620 (class 0 OID 24578)
+-- Dependencies: 216
+-- Data for Name: enemy; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.enemy (id, attack, hp, name, speed, img, current_hp, exp, gold) FROM stdin;
+2	7	12	Slime	8	https://i.ibb.co/KzzRDX9/slime-1.png	12	10	600.00
+1	2	8	Skeleton	3	https://i.ibb.co/3SJwtBj/skeleton-1.png	8	5	250.00
+\.
+
+
+--
+-- TOC entry 3615 (class 0 OID 16451)
 -- Dependencies: 211
 -- Data for Name: inventory; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.inventory (id, gold, hp_bottle, is_key) FROM stdin;
-81	500.00	5	t
+81	1250.00	5	t
 \.
 
 
 --
--- TOC entry 3612 (class 0 OID 16484)
+-- TOC entry 3618 (class 0 OID 16484)
 -- Dependencies: 214
 -- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -181,7 +213,7 @@ COPY public.roles (id, name) FROM stdin;
 
 
 --
--- TOC entry 3611 (class 0 OID 16462)
+-- TOC entry 3617 (class 0 OID 16462)
 -- Dependencies: 213
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -199,7 +231,7 @@ COPY public.users (id, password, username) FROM stdin;
 
 
 --
--- TOC entry 3613 (class 0 OID 16489)
+-- TOC entry 3619 (class 0 OID 16489)
 -- Dependencies: 215
 -- Data for Name: users_roles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -217,7 +249,7 @@ COPY public.users_roles (user_id, roles_id) FROM stdin;
 
 
 --
--- TOC entry 3619 (class 0 OID 0)
+-- TOC entry 3626 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -226,7 +258,7 @@ SELECT pg_catalog.setval('public.hibernate_sequence', 82, true);
 
 
 --
--- TOC entry 3452 (class 2606 OID 16445)
+-- TOC entry 3456 (class 2606 OID 16445)
 -- Name: character character_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -235,7 +267,7 @@ ALTER TABLE ONLY public."character"
 
 
 --
--- TOC entry 3454 (class 2606 OID 16450)
+-- TOC entry 3458 (class 2606 OID 16450)
 -- Name: class class_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -244,7 +276,16 @@ ALTER TABLE ONLY public.class
 
 
 --
--- TOC entry 3456 (class 2606 OID 16455)
+-- TOC entry 3468 (class 2606 OID 24582)
+-- Name: enemy enemy_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.enemy
+    ADD CONSTRAINT enemy_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3460 (class 2606 OID 16455)
 -- Name: inventory inventory_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -253,7 +294,7 @@ ALTER TABLE ONLY public.inventory
 
 
 --
--- TOC entry 3460 (class 2606 OID 16488)
+-- TOC entry 3464 (class 2606 OID 16488)
 -- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -262,7 +303,7 @@ ALTER TABLE ONLY public.roles
 
 
 --
--- TOC entry 3458 (class 2606 OID 16468)
+-- TOC entry 3462 (class 2606 OID 16468)
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -271,7 +312,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 3462 (class 2606 OID 16493)
+-- TOC entry 3466 (class 2606 OID 16493)
 -- Name: users_roles users_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -280,7 +321,7 @@ ALTER TABLE ONLY public.users_roles
 
 
 --
--- TOC entry 3467 (class 2606 OID 16499)
+-- TOC entry 3473 (class 2606 OID 16499)
 -- Name: users_roles fk2o0jvgh89lemvvo17cbqvdxaa; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -289,7 +330,7 @@ ALTER TABLE ONLY public.users_roles
 
 
 --
--- TOC entry 3466 (class 2606 OID 16494)
+-- TOC entry 3472 (class 2606 OID 16494)
 -- Name: users_roles fka62j07k5mhgifpp955h37ponj; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -298,7 +339,7 @@ ALTER TABLE ONLY public.users_roles
 
 
 --
--- TOC entry 3463 (class 2606 OID 16457)
+-- TOC entry 3469 (class 2606 OID 16457)
 -- Name: character fkc0utjce5k7ac6affdf2ohqniy; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -307,7 +348,7 @@ ALTER TABLE ONLY public."character"
 
 
 --
--- TOC entry 3464 (class 2606 OID 16479)
+-- TOC entry 3470 (class 2606 OID 16479)
 -- Name: character fkrw4yg2y8edblxb38cisoe8nk5; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -316,7 +357,7 @@ ALTER TABLE ONLY public."character"
 
 
 --
--- TOC entry 3465 (class 2606 OID 16504)
+-- TOC entry 3471 (class 2606 OID 16504)
 -- Name: character fkt30kqp6veqigp0fqx39gyajkd; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -324,7 +365,7 @@ ALTER TABLE ONLY public."character"
     ADD CONSTRAINT fkt30kqp6veqigp0fqx39gyajkd FOREIGN KEY (users) REFERENCES public.users(id);
 
 
--- Completed on 2022-05-08 12:00:00 +03
+-- Completed on 2022-05-09 20:22:25 +03
 
 --
 -- PostgreSQL database dump complete
