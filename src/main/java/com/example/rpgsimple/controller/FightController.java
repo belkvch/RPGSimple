@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/fight")
 public class FightController {
     private final DefaultCharacterService characterService;
-    private final DefaultInventoryService inventoryService;
     private final DefaultEnemyService enemyService;
 
     @GetMapping
@@ -30,6 +29,7 @@ public class FightController {
         } else {
             currentEnemy = enemyService.findById(1L);
         }
+        model.addAttribute("url", "/ruins");
         model.addAttribute("enemy", currentEnemy);
         return "fight";
     }
@@ -47,12 +47,13 @@ public class FightController {
         } else {
             currentEnemy = enemyService.findById(1L);
         }
+        model.addAttribute("url", "/cave");
         model.addAttribute("enemy", currentEnemy);
         return "fight";
     }
 
     @PostMapping("/attack")
-    public String attack(Model model, @RequestParam(value = "id") Long id, @RequestParam(value = "idEnemy") Long idEnemy) {
+    public String attack(Model model, @RequestParam(value = "id") Long id, @RequestParam(value = "idEnemy") Long idEnemy, @RequestParam(value = "url") String url) {
         Character currentCharacter = characterService.findById(id);
         Enemy currentEnemy = enemyService.findById(idEnemy);
         int randomNumber = (int) ((Math.random() * 2) + 1);
@@ -75,11 +76,7 @@ public class FightController {
                         characterService.save(currentCharacter);
                         currentEnemy.setCurrentHp(currentEnemy.getHp());
                         enemyService.save(currentEnemy);
-                        model.addAttribute("character", currentCharacter);
-                        Inventory currentInventory = inventoryService.findInventoryByCharacter(currentCharacter.getInventoryCharacter().getId());
-                        model.addAttribute("inventory", currentInventory);
-                        model.addAttribute("Death", "Oh, try again...");
-                        return "village";
+                        return "redirect:/death";
                     }
                 } else {
                     currentEnemy.setCurrentHp(currentEnemy.getHp());
@@ -97,7 +94,7 @@ public class FightController {
                         currentCharacter.setSpeed(currentCharacter.getSpeed() + currentCharacter.getClassCharacter().getPrioritySpeed());
                         characterService.save(currentCharacter);
                     }
-                    return "redirect:/ruins";
+                    return "redirect:" + url;
                 }
             } else {
                 currentCharacter.setCurrentHp(currentCharacter.getCurrentHp() - currentEnemy.getAttack());
@@ -127,18 +124,14 @@ public class FightController {
                             currentCharacter.setSpeed(currentCharacter.getSpeed() + currentCharacter.getClassCharacter().getPrioritySpeed());
                             characterService.save(currentCharacter);
                         }
-                        return "redirect:/ruins";
+                        return "redirect:" + url;
                     }
                 } else {
                     currentCharacter.setCurrentHp(currentCharacter.getHp());
                     characterService.save(currentCharacter);
                     currentEnemy.setCurrentHp(currentEnemy.getHp());
                     enemyService.save(currentEnemy);
-                    model.addAttribute("character", currentCharacter);
-                    Inventory currentInventory = inventoryService.findInventoryByCharacter(currentCharacter.getInventoryCharacter().getId());
-                    model.addAttribute("inventory", currentInventory);
-                    model.addAttribute("Death", "Oh, try again...");
-                    return "village";
+                    return "redirect:/death";
                 }
             }
         } else {
@@ -176,11 +169,7 @@ public class FightController {
         if (currentCharacter.getClassCharacter().getId() == 2) {
             int randomNumberToRunBandit = (int) ((Math.random() * 2) + 1);
             if (randomNumberToRunBandit == 1) {
-                model.addAttribute("character", currentCharacter);
-                Inventory currentInventory = inventoryService.findInventoryByCharacter(currentCharacter.getInventoryCharacter().getId());
-                model.addAttribute("inventory", currentInventory);
-                model.addAttribute("Death", "You have successfully escaped");
-                return "village";
+                return "redirect:/village";
             } else {
                 int randomNumber = (int) ((Math.random() * 2) + 1);
                 if (randomNumber == 1) {
@@ -197,11 +186,7 @@ public class FightController {
                         characterService.save(currentCharacter);
                         currentEnemy.setCurrentHp(currentEnemy.getHp());
                         enemyService.save(currentEnemy);
-                        model.addAttribute("character", currentCharacter);
-                        Inventory currentInventory = inventoryService.findInventoryByCharacter(currentCharacter.getInventoryCharacter().getId());
-                        model.addAttribute("inventory", currentInventory);
-                        model.addAttribute("Death", "Oh, try again...");
-                        return "village";
+                        return "redirect:/death";
                     }
                 } else {
                     model.addAttribute("yourTurn", "You tried to escape");
@@ -215,11 +200,7 @@ public class FightController {
         } else {
             int randomNumberToRun = (int) ((Math.random() * 4) + 1);
             if (randomNumberToRun == 1) {
-                model.addAttribute("character", currentCharacter);
-                Inventory currentInventory = inventoryService.findInventoryByCharacter(currentCharacter.getInventoryCharacter().getId());
-                model.addAttribute("inventory", currentInventory);
-                model.addAttribute("Death", "You have successfully escaped");
-                return "village";
+                return "redirect:/village";
             } else {
                 int randomNumber = (int) ((Math.random() * 2) + 1);
                 if (randomNumber == 1) {
@@ -236,11 +217,7 @@ public class FightController {
                         characterService.save(currentCharacter);
                         currentEnemy.setCurrentHp(currentEnemy.getHp());
                         enemyService.save(currentEnemy);
-                        model.addAttribute("character", currentCharacter);
-                        Inventory currentInventory = inventoryService.findInventoryByCharacter(currentCharacter.getInventoryCharacter().getId());
-                        model.addAttribute("inventory", currentInventory);
-                        model.addAttribute("Death", "Oh, try again...");
-                        return "village";
+                        return "redirect:/death";
                     }
                 } else {
                     model.addAttribute("yourTurn", "You tried to escape");

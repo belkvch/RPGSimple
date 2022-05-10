@@ -56,7 +56,7 @@
             <form action="#" th:action="@{'/usePoiton'}" th:object="${character}" method="post">
                 <input type="hidden" th:value="${character.getId()}" th:attr="name='id'"/>
                 <input class="some-class" type="hidden" th:attr="name='url'">
-                <p><input type="submit" class="form-control btn btn-dark" value="Use potion"/></p>
+                <p><input type="submit" class="form-control btn btn-light yourClassSecond" value="Use potion"/></p>
             </form>
             <p class="TextThird" style="color: peru" th:if="${character.getInventoryCharacter().isKey() == true}">
                 Cave's key </p>
@@ -71,7 +71,7 @@
         <a class="TextThird" th:href="@{/cave}">Cave</a>
         <p th:if="${character.getInventoryCharacter().isKey() == false}" class="Head" style="margin: 5px;">NPC</p>
         <div th:if="${character.getInventoryCharacter().isKey() == false}" class="dropdown" style="margin: 5px;">
-            <button type="button" class="form-control btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
+            <button type="button" class="form-control btn btn-light dropdown-toggle yourClassSecond" data-bs-toggle="dropdown">
                 Stranger
             </button>
             <ul class="dropdown-menu">
@@ -80,7 +80,7 @@
                 <li style="margin: 5px;">
                     <form action="#" th:action="@{'/ruins'}" th:object="${character}" method="post">
                         <input type="hidden" th:value="${character.getId()}" th:attr="name='id'"/>
-                        <p><input type="submit" class="form-control btn btn-dark" value="Buy key for 2000 gold"/></p>
+                        <p><input type="submit" class="form-control btn btn-dark yourClassSecond" value="Buy key for 2000 gold"/></p>
                     </form>
                 </li>
             </ul>

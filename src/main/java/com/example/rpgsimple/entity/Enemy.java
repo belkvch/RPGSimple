@@ -28,5 +28,7 @@ public class Enemy {
 
     private String name;
 
+    private String description;
+
     private String img;
 }

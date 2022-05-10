@@ -1,13 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 
+html {
+    box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+    box-sizing: inherit;
+    font-family: inherit;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+}
+
+.btn {
+    font-family: 'Press Start 2P', cursive;
+}
+
+.btn.yourClass {
+    font-size: 1rem;
+}
+
+.btn.yourClassSecond {
+    font-size: 0.7rem;
+}
+
+
 .Head {
     font-family: 'Press Start 2P', cursive;
     text-transform: uppercase;
     color: white;
 }
 
+.HeadWP {
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
 .cardBack {
     background-color: rgba(154, 153, 153, 0.2);
+    max-height: 265px;
+    max-width: 574px;
+}
+
+.cardBackWP {
+    background-color: rgba(0, 0, 0, 0.7);
+    max-height: 265px;
+    max-width: 900px;
+}
+
+.cardBackFight {
+    background-color: rgba(154, 153, 153, 0.2);
+    max-height: 265px;
+    max-width: 400px;
 }
 
 .HeadBlack {
@@ -67,17 +117,34 @@
     margin: 1px;
 }
 
+.DeathBack {
+    background-image: url("https://steamuserimages-a.akamaihd.net/ugc/100603690261223169/43E061E535288BB01C1406719A7F2BE6A4D37B58/");
+    background-size: 100%;
+}
+
+.DeathWarn {
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    font-size: 15rem;
+    color: #701001;
+    text-shadow: #e59292 0 0 7px;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    place-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
 .Death {
     font-family: 'VT323', monospace;
     color: #701001;
-    font-size: 1.5rem;
-    text-decoration: none;
-    margin: 1px;
 }
 
 .Forest {
     background-image: url("https://steamuserimages-a.akamaihd.net/ugc/100603690274632772/7538841421DEA4DA2E4F1DFE1EA1D1C2D0C0632E/");
     background-size: 100%;
+    background-attachment:fixed;
 }
 
 .Village {

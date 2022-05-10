@@ -7,43 +7,81 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css" th:href="@{/css/main.css}"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
-<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="Forest">
 
 <div sec:authorize="isAuthenticated()">
     <div style="text-align: right; margin-right: 5px">
-        <a class="Text" th:href="@{/logout}">Logout</a>
+        <a class="TextSecond" th:href="@{/logout}">Logout</a>
     </div>
 </div>
 
 <div style="text-align: center;">
-    <h2 class="Head">Simple RPG</h2>
+    <h2 style="margin: 10px" class="Head">Simple RPG</h2>
 </div>
 
 <div sec:authorize="isAnonymous()">
     <div style="text-align: center;">
-        <a th:href="@{/login}" class="btn btn-light"><span class="Head">Login</span></a>
-        <a th:href="@{/registration}" class="btn btn-light"><span class="Head"> Register</span></a>
+        <a th:href="@{/login}" class="HeadWP">Login</a>
+        <a th:href="@{/registration}" style="margin: 5px;" class="HeadWP"> Register</a>
     </div>
 </div>
 
 <div sec:authorize="isAuthenticated()">
     <div th:if="${isCharacter == false}">
         <div style="text-align: center;">
-            <a th:href="@{/village}" class="btn btn-light"><span class="Head">Village</span></a>
+            <a th:href="@{/village}" class="HeadWP">Village</a>
         </div>
     </div>
     <div th:if="${isCharacter == true}">
         <div style="text-align: center;">
-            <a th:href="@{/registration/create-character}" class="btn btn-light"><span
-                    class="Head">Create character</span></a>
+            <a th:href="@{/registration/create-character}" class="HeadWP">Create character</a>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="card-deck d-flex justify-content-center">
+    <div class="cardBackWP d-flex" style="margin: 5px;">
+        <img class="card-img-top" src="https://i.ibb.co/dryzXyS/welcome-2.jpg" alt="Card image cap" style="margin: 5px;">
+        <div class="card-body">
+            <h5 class="Head"> Start your journey </h5>
+            <p class="TextThird"> You can choose your class, depending on what you like.</p>
+            <p class="TextThird"> Carefully look at the characteristics of each class.</p>
         </div>
     </div>
 </div>
 
+<div class="card-deck d-flex justify-content-center">
+    <div class="cardBackWP d-flex" style="margin: 5px;">
+        <div class="card-body">
+            <h5 class="Head"> Fight the battles </h5>
+            <p class="TextThird"> It will help you not only to become stronger, but also to earn money.</p>
+            <p class="TextThird"> Battle experience is an important part of the game.</p>
+        </div>
+        <img class="card-img-top" src="https://i.ibb.co/gWwz9Y9/welcome-3.jpg" alt="Card image cap" style="margin: 5px;">
+    </div>
+</div>
+
+<div class="card-deck d-flex justify-content-center">
+    <div class="cardBackWP d-flex" style="margin: 5px;">
+        <img class="card-img-top" src="https://i.ibb.co/cTXW0cf/welcome-1.jpg" alt="Card image cap" style="margin: 5px;">
+        <div class="card-body">
+            <h5 class="Head"> Discover new locations </h5>
+            <p class="TextThird"> During the journey you will meet a lot of characters and monsters.</p>
+            <p class="TextThird"> A variety of locations will not let you get bored.</p>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+
+<div style="text-align: left; margin-left: 5px">
+    <span class="TextSecond">Created by belkvch</span>
+</div>
 
 </body>
 </html>

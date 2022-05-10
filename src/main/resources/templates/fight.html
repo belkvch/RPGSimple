@@ -25,7 +25,7 @@
 </div>
 
 <div class="card-deck d-flex justify-content-center" th:object="${character}">
-    <div class="cardBack d-flex" th:object="${inventory}" style="margin: 5px;">
+    <div class="cardBack d-flex" style="margin: 5px;">
         <img class="card-img-top" th:src="${character.classCharacter.img}" alt="Card image cap" style="margin: 5px;">
         <div class="card-body">
             <h5 class="Head"><p th:text="${character.classCharacter.getName()}"></p></h5>
@@ -48,27 +48,28 @@
         <form action="#" style="margin: 5px;" th:action="@{'/fight/attack'}" method="post">
             <input type="hidden" th:value="${character.getId()}" th:attr="name='id'"/>
             <input type="hidden" th:value="${enemy.getId()}" th:attr="name='idEnemy'"/>
-            <p><input type="submit" class="form-control btn btn-danger" value="Attack"/></p>
+            <input type="hidden" th:value="${url}" th:attr="name='url'"/>
+            <p><input type="submit" class="form-control btn btn-danger yourClassSecond" value="Attack"/></p>
         </form>
         <form action="#" style="margin: 5px;" th:action="@{'/fight/defend'}" method="post">
             <input type="hidden" th:value="${character.getId()}" th:attr="name='id'"/>
             <input type="hidden" th:value="${enemy.getId()}" th:attr="name='idEnemy'"/>
-            <p><input type="submit" class="form-control btn btn-danger" value="Defend"/></p>
+            <p><input type="submit" class="form-control btn btn-danger yourClassSecond" value="Defend"/></p>
         </form>
         <form action="#" style="margin: 5px;" th:action="@{'/fight/run'}" method="post">
             <input type="hidden" th:value="${character.getId()}" th:attr="name='id'"/>
             <input type="hidden" th:value="${enemy.getId()}" th:attr="name='idEnemy'"/>
-            <p><input type="submit" class="form-control btn btn-danger" value="Run Away"/></p>
+            <p><input type="submit" class="form-control btn btn-danger yourClassSecond" value="Run Away"/></p>
         </form>
     </div>
 
-    <div class="cardBack d-flex" th:object="${enemy}" style="margin: 5px; text-align: center;">
-        <div class="card-body">
+    <div class="cardBackFight d-flex" th:object="${enemy}" style="margin: 5px; text-align: center;">
+        <div class="card-body" style="height: 20px">
             <h5 class="Head"><p th:text="${enemy.getName()}"></p></h5>
             <p class="TextThird" style="color: tomato"> HP: <span class="TextThird" style="color: tomato"
                                                                   th:text="${enemy.currentHp} + '/'+|${enemy.hp}|"> </span>
             </p>
-            <p class="TextThird"> Description </p>
+            <p class="TextThird"> <span th:text="${enemy.description}"></span> </p>
         </div>
         <img class="card-img-top" th:src="${enemy.img}" alt="Card image cap" style="margin: 5px;">
     </div>
