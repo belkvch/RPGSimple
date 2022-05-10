@@ -5,7 +5,7 @@
 -- Dumped from database version 14.2
 -- Dumped by pg_dump version 14.2
 
--- Started on 2022-05-09 20:22:24 +03
+-- Started on 2022-05-10 17:48:03 +03
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -78,7 +78,8 @@ CREATE TABLE public.enemy (
     img character varying(255),
     current_hp integer,
     exp integer,
-    gold numeric(19,2)
+    gold numeric(19,2),
+    description character varying(255)
 );
 
 
@@ -161,7 +162,7 @@ ALTER TABLE public.users_roles OWNER TO postgres;
 --
 
 COPY public."character" (id, attack, hp, lvl, speed, class, inventory, users, current_experience, score_exp_to_next_lvl, current_hp) FROM stdin;
-82	8	11	3	4	1	81	4	25	50	11
+82	18	26	8	9	1	81	4	110	125	26
 \.
 
 
@@ -183,9 +184,9 @@ COPY public.class (id, priority_attack, priorityhp, priority_speed, attack_stat,
 -- Data for Name: enemy; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.enemy (id, attack, hp, name, speed, img, current_hp, exp, gold) FROM stdin;
-2	7	12	Slime	8	https://i.ibb.co/KzzRDX9/slime-1.png	12	10	600.00
-1	2	8	Skeleton	3	https://i.ibb.co/3SJwtBj/skeleton-1.png	8	5	250.00
+COPY public.enemy (id, attack, hp, name, speed, img, current_hp, exp, gold, description) FROM stdin;
+1	2	8	Skeleton	3	https://i.ibb.co/3SJwtBj/skeleton-1.png	8	5	250.00	Probably during lifetime this man served in a ruined castle
+2	7	12	Slime	8	https://i.ibb.co/KzzRDX9/slime-1.png	12	10	600.00	Who just won't meet in the darkness
 \.
 
 
@@ -196,7 +197,7 @@ COPY public.enemy (id, attack, hp, name, speed, img, current_hp, exp, gold) FROM
 --
 
 COPY public.inventory (id, gold, hp_bottle, is_key) FROM stdin;
-81	1250.00	5	t
+81	15100.00	9	t
 \.
 
 
@@ -227,6 +228,7 @@ COPY public.users (id, password, username) FROM stdin;
 68	$2a$10$3EHoDiu18j0MkH/3phd.4ud8i8PY0un1RAr3FqM71kocamOx/KiWa	test
 73	$2a$10$wpZZHAMOQUvnhgKANBbTmu5UY.YJTqaOJgERfpi4PufACgJvkK02G	ibadora
 76	$2a$10$uT7MRhf4eU4xR/OshwdFUOwV4u56WMBnQRCXlFtdzVRBRBwb4dgm.	rpg
+83	$2a$10$opJAQNoh10sa6tNrhgeIded6cF3ZlL25fpYwKYhanekeopLFIyvtq	newuser
 \.
 
 
@@ -245,6 +247,7 @@ COPY public.users_roles (user_id, roles_id) FROM stdin;
 68	1
 73	1
 76	1
+83	1
 \.
 
 
@@ -254,7 +257,7 @@ COPY public.users_roles (user_id, roles_id) FROM stdin;
 -- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.hibernate_sequence', 82, true);
+SELECT pg_catalog.setval('public.hibernate_sequence', 83, true);
 
 
 --
@@ -365,7 +368,7 @@ ALTER TABLE ONLY public."character"
     ADD CONSTRAINT fkt30kqp6veqigp0fqx39gyajkd FOREIGN KEY (users) REFERENCES public.users(id);
 
 
--- Completed on 2022-05-09 20:22:25 +03
+-- Completed on 2022-05-10 17:48:05 +03
 
 --
 -- PostgreSQL database dump complete
