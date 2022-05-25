@@ -20,6 +20,15 @@ public class Character {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ColumnDefault("false")
+    private boolean questAgreeWitch;
+
+    @ColumnDefault("false")
+    private boolean questAgreeBoss;
+
+    @ColumnDefault("false")
+    private boolean firstWin;
+
     private Integer lvl;
 
     private Integer currentHp;

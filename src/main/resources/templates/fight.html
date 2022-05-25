@@ -45,21 +45,25 @@
 
     <div class="cardBack d-flex flex-column" style="margin: 5px; text-align: center;">
         <p class="Head" style="margin: 5px;"> Actions </p>
-        <form action="#" style="margin: 5px;" th:action="@{'/fight/attack'}" method="post">
+        <form action="#" style="margin: 5px;" th:action="@{'/fight/attack/' + ${urlFight}}" method="post">
             <input type="hidden" th:value="${character.getId()}" th:attr="name='id'"/>
             <input type="hidden" th:value="${enemy.getId()}" th:attr="name='idEnemy'"/>
-            <input type="hidden" th:value="${url}" th:attr="name='url'"/>
             <p><input type="submit" class="form-control btn btn-danger yourClassSecond" value="Attack"/></p>
         </form>
-        <form action="#" style="margin: 5px;" th:action="@{'/fight/defend'}" method="post">
+        <form action="#" style="margin: 5px;" th:action="@{'/fight/defend/'+ ${urlFight}}" method="post">
             <input type="hidden" th:value="${character.getId()}" th:attr="name='id'"/>
             <input type="hidden" th:value="${enemy.getId()}" th:attr="name='idEnemy'"/>
             <p><input type="submit" class="form-control btn btn-danger yourClassSecond" value="Defend"/></p>
         </form>
-        <form action="#" style="margin: 5px;" th:action="@{'/fight/run'}" method="post">
+        <form action="#" style="margin: 5px;" th:action="@{'/fight/run/'+ ${urlFight}}" method="post">
             <input type="hidden" th:value="${character.getId()}" th:attr="name='id'"/>
             <input type="hidden" th:value="${enemy.getId()}" th:attr="name='idEnemy'"/>
             <p><input type="submit" class="form-control btn btn-danger yourClassSecond" value="Run Away"/></p>
+        </form>
+        <form action="#" style="margin: 5px;" th:action="@{'/fight/useSmoke/'+ ${urlFight}}" method="post">
+            <input type="hidden" th:value="${character.getId()}" th:attr="name='id'"/>
+            <input type="hidden" th:value="${enemy.getId()}" th:attr="name='idEnemy'"/>
+            <p><input type="submit" class="form-control btn btn-danger yourClassSecond" value="Use Smoke"/></p>
         </form>
     </div>
 
@@ -69,7 +73,7 @@
             <p class="TextThird" style="color: tomato"> HP: <span class="TextThird" style="color: tomato"
                                                                   th:text="${enemy.currentHp} + '/'+|${enemy.hp}|"> </span>
             </p>
-            <p class="TextThird"> <span th:text="${enemy.description}"></span> </p>
+            <p class="TextThird"><span th:text="${enemy.description}"></span></p>
         </div>
         <img class="card-img-top" th:src="${enemy.img}" alt="Card image cap" style="margin: 5px;">
     </div>
@@ -79,6 +83,15 @@
     <h2 style="margin: 1px; text-shadow: black 0 0 10px;"><span class="Death" th:text="${yourTurn}"></span></h2>
     <h2 style="margin: 1px; text-shadow: black 0 0 10px;"><span class="Death" th:text="${enemyTurn}"></span></h2>
 </div>
+
+<!--<embed src="/music/Buzova.mp3" autostart="true" hidden="false" loop="true" width="300" height="65"> </embed>-->
+
+<script th:if="${enemy.getId()== 3}">
+    document.addEventListener('click', () => {
+        const audio = new Audio('/music/Buzova.mp3');
+        audio.play();
+    }, { once: true });
+</script>
 
 </body>
 </html>

@@ -56,7 +56,7 @@ public class RegistrationController {
     @PostMapping("/create-character")
     public String createCharacter(@ModelAttribute Character character, Model model) {
         User userCurrent = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Inventory newInventory = new Inventory(new BigDecimal(1000), 5);
+        Inventory newInventory = new Inventory(new BigDecimal(1000), 5, 0);
         Character characterCheck = characterService.findUserByIdUser(userCurrent.getId());
         if (characterCheck == null) {
             inventoryService.save(newInventory);

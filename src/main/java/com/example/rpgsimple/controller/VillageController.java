@@ -46,4 +46,22 @@ public class VillageController {
         }
         return "redirect:/village";
     }
+
+    @PostMapping ("/buySmoke")
+    public String buySmoke(@RequestParam(value = "id") Long id, Model model) {
+        Character currentCharacter = characterService.findById(id);
+        Inventory currentInventory = inventoryService.findInventoryByCharacter(currentCharacter.getInventoryCharacter().getId());
+        BigDecimal changeGold = currentInventory.getGold().subtract(new BigDecimal(1000));
+        if (changeGold.compareTo(BigDecimal.valueOf(0)) > 0 || changeGold.compareTo(BigDecimal.valueOf(0)) == 0) {
+            currentInventory.setGold(changeGold);
+            currentInventory.setSmoke(currentInventory.getSmoke() + 1);
+            inventoryService.save(currentInventory);
+        } else {
+            model.addAttribute("goldError", "You don't have any gold");
+            model.addAttribute("character", currentCharacter);
+            model.addAttribute("inventory", currentInventory);
+            return "village";
+        }
+        return "redirect:/village";
+    }
 }

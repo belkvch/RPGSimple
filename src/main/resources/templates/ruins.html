@@ -31,7 +31,7 @@
 
 <div class="card-deck d-flex justify-content-center" th:object="${character}">
     <div class="cardBack d-flex" th:object="${inventory}" style="margin: 5px;">
-        <img class="card-img-top" th:src="${character.classCharacter.img}" alt="Card image cap" style="margin: 5px;">
+        <img class="card-img-top" th:src="${character.getClassCharacter().img}" alt="Card image cap" style="margin: 5px;">
         <div class="card-body">
             <h5 class="Head"><p th:text="${character.classCharacter.getName()}"></p></h5>
             <p class="TextThird" style="color: tomato"> HP: <span class="TextThird" style="color: tomato"
@@ -48,18 +48,52 @@
         </div>
         <div class="card-body">
             <h5 class="Head"><p style="color: peru"> Inventory </p></h5>
-            <p class="TextThird" style="color: peru"> Gold: <span class="TextThird" style="color: peru"
-                                                                  th:text="${inventory.gold}"></span></p>
-            <p class="TextThird" style="color: peru"> Potion: <span class="TextThird"
-                                                                    style="color: peru"
-                                                                    th:text="${inventory.hpBottle}"></span></p>
-            <form action="#" th:action="@{'/usePoiton'}" th:object="${character}" method="post">
-                <input type="hidden" th:value="${character.getId()}" th:attr="name='id'"/>
-                <input class="some-class" type="hidden" th:attr="name='url'">
-                <p><input type="submit" class="form-control btn btn-light yourClassSecond" value="Use potion"/></p>
-            </form>
-            <p class="TextThird" style="color: peru" th:if="${character.getInventoryCharacter().isKey() == true}">
-                Cave's key </p>
+
+            <button type="button" class="form-control btn btn-light yourClassSecond" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                Open
+            </button>
+
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content InventoryBack">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel" style="color: white">Inventory</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="TextThird" style="color: gold"> Gold: <span class="TextThird" style="color: gold"
+                                                                                  th:text="${inventory.gold}"></span>
+                            </p>
+                            <p class="TextThird" style="color: greenyellow"> Potion: <span class="TextThird"
+                                                                                           style="color: greenyellow"
+                                                                                           th:text="${inventory.hpBottle}"></span>
+                            </p>
+                            <p class="TextThird" style="color: cornflowerblue"> Smoke: <span class="TextThird"
+                                                                                             style="color: cornflowerblue"
+                                                                                             th:text="${inventory.smoke}"></span>
+                            </p>
+                            <form action="#" th:action="@{'/usePoiton'}" th:object="${character}" method="post">
+                                <input type="hidden" th:value="${character.getId()}" th:attr="name='id'"/>
+                                <input class="some-class" type="hidden" th:attr="name='url'">
+                                <p><input type="submit" class="form-control btn btn-light yourClassSecond"
+                                          value="Use potion"/></p>
+                            </form>
+                            <p class="Head" style="color: white"> Quest items: </p>
+                            <p class="TextThird" style="color: white"
+                               th:if="${character.getInventoryCharacter().isKey() == true}">
+                                Cave's key </p>
+                            <p class="TextThird" style="color: white"
+                               th:if="${character.isQuestAgreeWitch()== true}">
+                                Bones: <span class="TextThird"
+                                                    style="color: white"
+                                                    th:text="${inventory.bone}"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <span class="ErrorSecond" th:text="${goldError}"></span>
             <span class="ErrorSecond" th:text="${keyError}"></span>
         </div>
@@ -69,9 +103,11 @@
         <p class="Head" style="margin: 5px;">LOCATIONS</p>
         <a class="TextThird" th:href="@{/village}">Village</a>
         <a class="TextThird" th:href="@{/cave}">Cave</a>
+        <a class="TextThird" th:href="@{/witchsLair}">Witch's lair</a>
         <p th:if="${character.getInventoryCharacter().isKey() == false}" class="Head" style="margin: 5px;">NPC</p>
         <div th:if="${character.getInventoryCharacter().isKey() == false}" class="dropdown" style="margin: 5px;">
-            <button type="button" class="form-control btn btn-light dropdown-toggle yourClassSecond" data-bs-toggle="dropdown">
+            <button type="button" class="form-control btn btn-light dropdown-toggle yourClassSecond"
+                    data-bs-toggle="dropdown">
                 Stranger
             </button>
             <ul class="dropdown-menu">
@@ -80,7 +116,8 @@
                 <li style="margin: 5px;">
                     <form action="#" th:action="@{'/ruins'}" th:object="${character}" method="post">
                         <input type="hidden" th:value="${character.getId()}" th:attr="name='id'"/>
-                        <p><input type="submit" class="form-control btn btn-dark yourClassSecond" value="Buy key for 2000 gold"/></p>
+                        <p><input type="submit" class="form-control btn btn-dark yourClassSecond"
+                                  value="Buy key for 2000 gold"/></p>
                     </form>
                 </li>
             </ul>
@@ -100,7 +137,7 @@
         () => {
             if (Math.random() > 0.5) {
                 clearInterval(interval);
-                window.location.replace(window.location.origin + '/fight');
+                window.location.replace(window.location.origin + '/fight/ruins');
             }
         }, 5000);
 </script>

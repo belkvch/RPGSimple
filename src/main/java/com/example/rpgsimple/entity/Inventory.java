@@ -24,11 +24,17 @@ public class Inventory {
 
     private Integer hpBottle;
 
+    private Integer smoke;
+
+    @ColumnDefault("0")
+    private Integer bone;
+
     @ColumnDefault("false")
     private boolean isKey;
 
-    public Inventory(BigDecimal gold, Integer hpBottle) {
+    public Inventory(BigDecimal gold, Integer hpBottle, Integer smoke) {
         this.gold = gold;
         this.hpBottle = hpBottle;
+        this.smoke = smoke;
     }
 }

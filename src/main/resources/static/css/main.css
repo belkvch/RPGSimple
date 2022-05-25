@@ -109,6 +109,10 @@ body {
     font-size: 2rem;
 }
 
+.InventoryBack {
+    background-image: url("https://mineblocks.com/1/wiki/images/6/67/Cobblestone.png");
+}
+
 .ErrorSecond {
     font-family: 'VT323', monospace;
     color: tomato;
@@ -117,9 +121,38 @@ body {
     margin: 1px;
 }
 
+.BossFightBack {
+    background-image: url("https://steamuserimages-a.akamaihd.net/ugc/92729171389301734/D0836DBFC2AF605ECCA0519F1AA727E1CE3E187B/");
+    background-size: 100%;
+}
+
 .DeathBack {
     background-image: url("https://steamuserimages-a.akamaihd.net/ugc/100603690261223169/43E061E535288BB01C1406719A7F2BE6A4D37B58/");
     background-size: 100%;
+}
+
+.Witch {
+    background-image: url("https://steamuserimages-a.akamaihd.net/ugc/100603690261757492/9A537CC70AC29510320E20BA62D49AE7A58398A0/");
+    background-size: 100%;
+}
+
+.WinBack {
+    background-size: 100%;
+    background-image: url("https://steamuserimages-a.akamaihd.net/ugc/865107698018053144/37EC8825453F86AB5E75191399EC66D91BD73BF3/");
+}
+
+.WinWarn {
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    font-size: 15rem;
+    color: #ffe0de;
+    text-shadow: #b7b3b3 0 0 7px;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    place-content: center;
+    width: 100vw;
+    height: 100vh;
 }
 
 .DeathWarn {
