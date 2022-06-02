@@ -3,6 +3,7 @@ import com.example.rpgsimple.entity.*;
 import com.example.rpgsimple.entity.Character;
 import com.example.rpgsimple.service.*;
 import lombok.*;
+import org.slf4j.*;
 import org.springframework.security.core.context.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/welcomePage")
 public class WelcomePageController {
     private final DefaultCharacterService characterService;
+    private static final Logger LOGGER = LoggerFactory.getLogger(WelcomePageController.class);
 
     @GetMapping
     public String registration() {
@@ -28,6 +30,7 @@ public class WelcomePageController {
             isCharacter = true;
         }
         model.addAttribute("isCharacter", isCharacter);
+        LOGGER.info("authenticated");
         return "welcomePage";
     }
 }

@@ -4,6 +4,7 @@ import com.example.rpgsimple.entity.*;
 import com.example.rpgsimple.entity.Character;
 import com.example.rpgsimple.service.*;
 import lombok.*;
+import org.slf4j.*;
 import org.springframework.security.core.context.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
@@ -17,6 +18,7 @@ import java.lang.*;
 public class DarknessController {
     private final DefaultCharacterService characterService;
     private final DefaultInventoryService inventoryService;
+    private static final Logger LOGGER = LoggerFactory.getLogger(DarknessController.class);
 
     @GetMapping
     public String bossPage(Model model) {
@@ -25,6 +27,7 @@ public class DarknessController {
         model.addAttribute("character", characterUser);
         Inventory inventoryByCharacter = inventoryService.findInventoryByCharacter(characterUser.getInventoryCharacter().getId());
         model.addAttribute("inventory", inventoryByCharacter);
+        LOGGER.info("boss fight");
         return "darkness";
     }
 }
